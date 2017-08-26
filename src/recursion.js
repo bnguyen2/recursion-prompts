@@ -7,20 +7,46 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+	if (n < 0) {
+		return null;
+	} else if (n === 0)  {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+	if (array.length === 0) {
+		return 0;
+	} else {
+		return array[0] + sum(array.slice(1))
+	}
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  return array.reduce(function(acc, curr) {
+  	return Array.isArray(curr) ? arraySum(curr) + acc : acc + curr;
+  }, 0);
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+    if (n === 0) {
+      return true
+    } else if (n === 1) {
+      return false;
+    }
+
+    if (n > 0) {
+      return isEven(n - 2)
+    } else {
+      return isEven(n + 2)
+    }
 };
 
 // 5. Sum all integers below a given integer.
@@ -51,6 +77,11 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+	if (string.length === 0) {
+		return '';
+	} else {
+		return reverse(string.substring(1)) + string[0];
+	}
 };
 
 // 10. Write a function that determines if a string is a palindrome.
